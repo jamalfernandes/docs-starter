@@ -35,13 +35,16 @@
         "group": "Reference",
         "icon": "library",
         "pages": [
+          "proof",
           "visual"
         ]
       },
       {
         "group": "Internal · Boost33",
         "icon": "triangle-alert",
-        "pages": []
+        "pages": [
+          "open-items"
+        ]
       }
     ]
   },
