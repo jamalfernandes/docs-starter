@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Xavier Herman · Brand Kit",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#f95916",
+    "light": "#ff7134",
+    "dark": "#b02c00"
   },
   "favicon": "/favicon.svg",
   "navigation": {
@@ -29,7 +29,8 @@
           "posts",
           "website",
           "emails"
-        ]
+        ],
+        "tag": "Draft"
       },
       {
         "group": "Reference",
