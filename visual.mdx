@@ -7,10 +7,10 @@ noindex: true
 
 ## How to use this page
 
-Copy the token block below into your repo as `tokens.css`, load it first, and build every rule against the custom properties rather than against raw values. Everything under it is provenance: which file each number came from, how confident we are, and what still needs your confirmation before a value is safe to ship.
+Copy the token block below into your repo as `tokens.css` and load it before anything else. Build every rule against the custom properties, never against raw values. Everything under the block is provenance: which file each number came from, how far we trust it, and what Xavier still has to confirm before a value is safe to ship.
 
 <Note>
-Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is authoritative for `--font-*` and `--color-*`. The **approved 4 September wireframe** is authoritative for `--space-*`, `--scale-*`, radii, shadows and layout. Where they disagree, the row in the provenance table says so.
+Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is authoritative for `--font-*` and `--color-*`. The **approved 4 September wireframe** is authoritative for `--space-*`, `--scale-*`, radii, shadows and layout. Where they disagree, the provenance table says which one wins.
 </Note>
 
 ---
@@ -211,25 +211,94 @@ Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is 
 
 ## Colour
 
-| Swatch | Token | Hex | Role |
-| --- | --- | --- | --- |
-| ● | `--color-brand` | `#f95916` | Action. Buttons, forward links, eyebrow rules, active states. |
-| ● | `--color-accent-ink` | `#b02c00` | Orange text at small sizes. Never the fill. |
-| ● | `--color-brand-secondary` | `#451d9e` | Emphasis and category. Focus rings, door rules, the short-check band. |
-| ● | `--color-text-heading` | `#0f172a` | Headings. |
-| ● | `--color-text` | `#1e293b` | Body copy. |
-| ● | `--color-text-secondary` | `#475569` | Supporting copy inside cards. |
-| ● | `--color-text-muted` | `#64748b` | Captions, mono labels, legends. |
-| ● | `--color-border` | `#e2e8f0` | Default 1px border. |
-| ● | `--color-surface-sunken` | `#f8fafc` | Alternating band, proof strip. |
-| ● | `--color-night` | `#0b1220` | Dark bands and the wand panel. |
+<div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(190px,1fr))',gap:'16px',margin:'24px 0'}}>
+  <div>
+    <div style={{background:'#f95916',height:'72px',borderRadius:'10px',border:'1px solid #cbd5e1'}} />
 
-`#f95916` and `#451d9e` are the only two values that already agree across every Xavier property. That agreement is the foundation. Everything else is being decided here for the first time.
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'13px',fontWeight:600}}>--color-brand</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12px',opacity:0.65}}>#f95916</div>
+    <div style={{fontSize:'13px',marginTop:'4px'}}>Action. Buttons, forward links, eyebrow rules, active states.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#b02c00',height:'72px',borderRadius:'10px',border:'1px solid #cbd5e1'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'13px',fontWeight:600}}>--color-accent-ink</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12px',opacity:0.65}}>#b02c00</div>
+    <div style={{fontSize:'13px',marginTop:'4px'}}>Orange text at small sizes. Never the fill.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#451d9e',height:'72px',borderRadius:'10px',border:'1px solid #cbd5e1'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'13px',fontWeight:600}}>--color-brand-secondary</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12px',opacity:0.65}}>#451d9e</div>
+    <div style={{fontSize:'13px',marginTop:'4px'}}>Emphasis and category. Focus rings, door rules, the short-check band.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#0f172a',height:'72px',borderRadius:'10px',border:'1px solid #cbd5e1'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'13px',fontWeight:600}}>--color-text-heading</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12px',opacity:0.65}}>#0f172a</div>
+    <div style={{fontSize:'13px',marginTop:'4px'}}>Headings.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#1e293b',height:'72px',borderRadius:'10px',border:'1px solid #cbd5e1'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'13px',fontWeight:600}}>--color-text</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12px',opacity:0.65}}>#1e293b</div>
+    <div style={{fontSize:'13px',marginTop:'4px'}}>Body copy.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#475569',height:'72px',borderRadius:'10px',border:'1px solid #cbd5e1'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'13px',fontWeight:600}}>--color-text-secondary</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12px',opacity:0.65}}>#475569</div>
+    <div style={{fontSize:'13px',marginTop:'4px'}}>Supporting copy inside cards.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#64748b',height:'72px',borderRadius:'10px',border:'1px solid #cbd5e1'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'13px',fontWeight:600}}>--color-text-muted</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12px',opacity:0.65}}>#64748b</div>
+    <div style={{fontSize:'13px',marginTop:'4px'}}>Captions, mono labels, legends.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#e2e8f0',height:'72px',borderRadius:'10px',border:'1px solid #94a3b8'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'13px',fontWeight:600}}>--color-border</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12px',opacity:0.65}}>#e2e8f0</div>
+    <div style={{fontSize:'13px',marginTop:'4px'}}>Default 1px border.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#f8fafc',height:'72px',borderRadius:'10px',border:'1px solid #94a3b8'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'13px',fontWeight:600}}>--color-surface-sunken</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12px',opacity:0.65}}>#f8fafc</div>
+    <div style={{fontSize:'13px',marginTop:'4px'}}>Alternating band, proof strip.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#0b1220',height:'72px',borderRadius:'10px',border:'1px solid #cbd5e1'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'13px',fontWeight:600}}>--color-night</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12px',opacity:0.65}}>#0b1220</div>
+    <div style={{fontSize:'13px',marginTop:'4px'}}>Dark bands and the wand panel.</div>
+  </div>
+</div>
+
+`#f95916` and `#451d9e` are the only two values that already agree across every Xavier property, so the palette is anchored on them. Everything else here is being decided for the first time.
 
 **Usage rules.**
 
 - Orange is the only action colour on this site. Purple never becomes a button.
-- Orange never carries running text on white. Lighthouse measured `#f95916` on `#ffffff` at **3.24:1** and on `#f1f5f9` at **2.96:1**. Both fail the 4.5:1 body-text threshold, and the live site currently uses it for 12px mono labels. Use `--color-accent-ink` for any orange text under 24px.
+- Orange never carries running text on white. Lighthouse measured `#f95916` on `#ffffff` at **3.24:1** and on `#f1f5f9` at **2.96:1**. Both fail the 4.5:1 body-text threshold. The live site uses orange for 12px mono labels anyway. Use `--color-accent-ink` for any orange text under 24px.
 - White on orange also measured **3.24:1**. Orange-filled buttons need a dark label. The wireframe uses `#180600`, not white.
 - Neutrals carry all text. Purple is for emphasis, borders and focus, not paragraphs.
 - No value in `--color-night*` ever touches the page background. The dark bands are sections, not a theme. There is no dark mode anywhere in the estate and none is being designed.
@@ -242,11 +311,11 @@ Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is 
 **The live site has no typeface.** The 23 July capture loads no font file at all: no `@font-face`, no Google Fonts link, no font request in the network log. It loads Tailwind Play CDN, React 18, Babel Standalone, Lucide and Plausible, and nothing else. Every `font-sans` and `font-mono` class resolves to the browser default, so xherman.com renders in San Francisco on Mac, Segoe UI on Windows, Roboto on Android.
 </Warning>
 
-That null result is the authoritative answer, and it is why `--font-display` is `[awaiting Xavier]`.
+That null result is the answer. It is also why `--font-display` is `[awaiting Xavier]`.
 
 **What the mockup rendered in, and why it is not evidence.** The 4 September wireframe declares `"Outfit"` for display and `"InterX"` for UI. Both `@font-face` rules resolve with `local()` only, so they picked up whatever was installed on the Boost33 machine. On the 4 September call Jamal flagged exactly this: the wireframe was rendering in Boost33 fonts, not Xavier's. Treat the mockup's letterforms as placeholder.
 
-**Where "Outfit" actually comes from.** Not the capture. It is self-hosted as a variable TTF on `experiencehacking.eu`, alongside Inter, which is used there for buttons only. It is the single real type choice anyone in the estate has made, and it costs no new dependency and no Google CDN call, which suits the sovereignty positioning. That makes it the obvious candidate. It is a recommendation, not a recovered fact, and it needs Xavier to say yes.
+**Where "Outfit" actually comes from.** Not the capture. It is self-hosted as a variable TTF on `experiencehacking.eu`, alongside Inter, which that site uses for buttons only. It is the one real type choice anyone in the estate has made. Self-hosting it costs no new dependency and no Google CDN call. That suits the sovereignty positioning. So it is the candidate to beat. It is still a recommendation rather than a recovered fact, and Xavier has to say yes.
 
 | Step | Token | Size | Weight | Leading | Used for |
 | --- | --- | --- | --- | --- | --- |
@@ -258,7 +327,7 @@ That null result is the authoritative answer, and it is why `--font-display` is 
 | Body | `--scale-body` | 17px | 400 | 1.62 | Running copy. 60ch. |
 | Card | `--scale-card` | 15.5px | 400 | 1.58 | Copy inside cards and doors. |
 | Small | `--scale-small` | 14px | 400 | 1.55 | Captions, footnotes, sticky bar. |
-| Kicker | `--scale-kicker` | 11.5px mono | 700 | — | Section eyebrow. Uppercase, `.15em`, orange-ink, with a 26 × 2px orange rule before it. |
+| Kicker | `--scale-kicker` | 11.5px mono | 700 | n/a | Section eyebrow. Uppercase, `.15em`, orange-ink, with a 26 × 2px orange rule before it. |
 | Micro | `--scale-micro` | 10px mono | 700 | 1.8 | Stat labels, footer headings, chips. Uppercase, `.12em`. |
 | Stat | `--scale-stat` | 28 → 36px | 700 | 1 | Proof-strip numbers. `font-variant-numeric: tabular-nums`. |
 
@@ -270,9 +339,9 @@ The mono eyebrow is the one device the estate genuinely owns. It appears 29 time
 
 The wireframe has no named spacing scale. It uses literal pixels, and they cluster tightly enough to ladder. `--space-1` through `--space-15` above is that ladder. The numbers are real, the naming is ours, and the row is marked inferred in the provenance table.
 
-**Rhythm.** Sections run `112px` top and bottom, dropping to `64px` below 900px. The hero is the exception: `88px` top, `96px` bottom. Card grids gap `18px`. Two-column splits gap `54–64px`. Paragraph bottom margin is `18px`.
+**Rhythm.** Sections run `112px` top and bottom, `64px` below 900px. The hero is the exception: `88px` top, `96px` bottom. Card grids gap `18px`. Two-column splits gap `54–64px`. Paragraph bottom margin is `18px`.
 
-**Container.** `1160px` max width with `40px` gutters, falling to `22px` below 900px. Reading measures are set in `ch`, not px, so they survive a font swap: `17ch` on H1, `19ch` on H2, `50ch` on the lede, `60ch` on body, `58ch` on pull quotes.
+**Container.** `1160px` max width with `40px` gutters, `22px` below 900px. Reading measures are set in `ch`, not px, so they survive a font swap: `17ch` on H1, `19ch` on H2, `50ch` on the lede, `60ch` on body, `58ch` on pull quotes.
 
 **Breakpoints.** The wireframe uses thirteen: 560, 640, 680, 720, 760, 860, 900, 940, 980, 1080, 1100, 1180, 1400. Only 900 moves global tokens. The four-step `--bp-*` set is a consolidation we propose, not something the file states. Build against it, then do one visual pass at the dropped widths.
 
@@ -300,7 +369,7 @@ Primary button: `linear-gradient(180deg, --color-accent-hi, --color-brand)` with
 </Accordion>
 </AccordionGroup>
 
-**What holds them together.** Three things, and they are the whole system. A 1px `--color-border` hairline opens and closes every band. An orange mono eyebrow labels every section. Elevation only ever comes from `--shadow-1`, `-2`, `-3`, and hover moves exactly one step up plus a 1–2px lift. Nothing else is allowed to signal depth.
+**What holds them together.** Three devices, and they are the whole system. A 1px `--color-border` hairline opens and closes every band. An orange mono eyebrow labels every section. Elevation comes only from `--shadow-1`, `-2` and `-3`, and hover moves exactly one step up plus a 1–2px lift. Nothing else may signal depth.
 
 ---
 
@@ -311,12 +380,12 @@ Two items block this page from being final. Both are Xavier's.
 </Warning>
 
 <Steps>
-<Step title="Current site CSS and the confirmed font name">
-The 23 July capture is a Lighthouse report, not a source dump. It gave us the colours, the class usage and the measured contrast ratios, and it proved there is no web font. It cannot give us anything Xavier has changed since, and it cannot name a display face that does not exist on the site. `--font-display` stays `[awaiting Xavier]` until Xavier sends the current HTML and says yes or no to Outfit. Everything typographic downstream, including whether the h1 clamp still holds, waits on that.
+<Step title="Current site CSS and the confirmed font name" icon="type">
+The 23 July capture is a Lighthouse report, not a source dump. It gave us the colours, the class usage and the measured contrast ratios, and it proved there is no web font. It cannot give us anything Xavier has changed since, and it cannot name a display face that does not exist on the site. `--font-display` stays `[awaiting Xavier]` until Xavier sends the current HTML and says yes or no to Outfit. Everything typographic downstream waits on that, including whether the h1 clamp still holds.
 </Step>
 
-<Step title="One experience figure, applied everywhere">
-Four different year-counts are live across Xavier's properties right now, including 15+ on the page that takes the money. The wireframe deliberately leaves the figure out of the proof strip rather than pick one. Xavier chooses the number, then it goes everywhere without variation. Related and equally unresolved: "50+ client projects" is doing three different jobs across xherman.com and LinkedIn, and is marked `verify` in the wireframe until Xavier confirms it as a career total or drops it.
+<Step title="One experience figure, applied everywhere" icon="clock">
+Four different year-counts are live across Xavier's properties right now, including 15+ on the page that takes the money. The wireframe deliberately leaves the figure out of the proof strip rather than pick one. Xavier chooses the number, then it goes everywhere without variation. Equally unresolved: "50+ client projects" is doing three different jobs across xherman.com and LinkedIn, and is marked `verify` in the wireframe until Xavier confirms it as a career total or drops it.
 </Step>
 </Steps>
 
