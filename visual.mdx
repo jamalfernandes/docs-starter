@@ -317,19 +317,139 @@ That null result is the answer. It is also why `--font-display` is `[awaiting Xa
 
 **Where "Outfit" actually comes from.** Not the capture. It is self-hosted as a variable TTF on `experiencehacking.eu`, alongside Inter, which that site uses for buttons only. It is the one real type choice anyone in the estate has made. Self-hosting it costs no new dependency and no Google CDN call. That suits the sovereignty positioning. So it is the candidate to beat. It is still a recommendation rather than a recovered fact, and Xavier has to say yes.
 
-| Step | Token | Size | Weight | Leading | Used for |
-| --- | --- | --- | --- | --- | --- |
-| H1 | `--scale-h1` | 38 → 66px | 700 | 1.04 | Hero headline. Capped at 17ch. |
-| H2 | `--scale-h2` | 29 → 44px | 700 | 1.1 | Section headings. Capped at 19ch. |
-| H3 | `--scale-h3` | 20 → 25px | 700 | 1.24 | Sub-headings inside sections. |
-| H4 | `--scale-h4` | 17.5px | 700 | 1.3 | Card titles. |
-| Lede | `--scale-lede` | 17.5 → 20px | 400 | 1.55 | The paragraph under H1 and H2. 50ch. |
-| Body | `--scale-body` | 17px | 400 | 1.62 | Running copy. 60ch. |
-| Card | `--scale-card` | 15.5px | 400 | 1.58 | Copy inside cards and doors. |
-| Small | `--scale-small` | 14px | 400 | 1.55 | Captions, footnotes, sticky bar. |
-| Kicker | `--scale-kicker` | 11.5px mono | 700 | n/a | Section eyebrow. Uppercase, `.15em`, orange-ink, with a 26 × 2px orange rule before it. |
-| Micro | `--scale-micro` | 10px mono | 700 | 1.8 | Stat labels, footer headings, chips. Uppercase, `.12em`. |
-| Stat | `--scale-stat` | 28 → 36px | 700 | 1 | Proof-strip numbers. `font-variant-numeric: tabular-nums`. |
+**The scale, set.** Every line below is the token doing its job, at its own size, weight, line height and tracking, on the white surface this estate actually ships. The five clamped steps are drawn at a fixed size inside their range and the label gives the clamp.
+
+<div style={{border:'1px solid #cbd5e1',borderRadius:'14px',background:'#ffffff',padding:'24px',margin:'24px 0'}}>
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start',paddingBottom:'20px',marginBottom:'20px',borderBottom:'1px solid #e2e8f0'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-h1</div>
+      <div>clamp(38px, 5.4vw, 66px)</div>
+      <div>shown at 52px / 700 / 1.04 / -.035em</div>
+      <div style={{color:'#64748b'}}>Hero headline, capped at 17ch</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px',fontSize:'52px',fontWeight:700,lineHeight:1.04,letterSpacing:'-.035em',color:'#0f172a'}}>Where AI pays off, and where it does not.</div>
+  </div>
+
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start',paddingBottom:'20px',marginBottom:'20px',borderBottom:'1px solid #e2e8f0'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-h2</div>
+      <div>clamp(29px, 3.5vw, 44px)</div>
+      <div>shown at 36px / 700 / 1.1 / -.028em</div>
+      <div style={{color:'#64748b'}}>Section headings, capped at 19ch</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px',fontSize:'36px',fontWeight:700,lineHeight:1.1,letterSpacing:'-.028em',color:'#0f172a'}}>Where AI pays off, and where it does not.</div>
+  </div>
+
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start',paddingBottom:'20px',marginBottom:'20px',borderBottom:'1px solid #e2e8f0'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-h3</div>
+      <div>clamp(20px, 2.1vw, 25px)</div>
+      <div>shown at 23px / 700 / 1.24 / -.02em</div>
+      <div style={{color:'#64748b'}}>Sub-headings inside sections</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px',fontSize:'23px',fontWeight:700,lineHeight:1.24,letterSpacing:'-.02em',color:'#0f172a'}}>Where AI pays off, and where it does not.</div>
+  </div>
+
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start',paddingBottom:'20px',marginBottom:'20px',borderBottom:'1px solid #e2e8f0'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-h4</div>
+      <div>17.5px</div>
+      <div>17.5px / 700 / 1.3 / -.028em</div>
+      <div style={{color:'#64748b'}}>Card titles</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px',fontSize:'17.5px',fontWeight:700,lineHeight:1.3,letterSpacing:'-.028em',color:'#0f172a'}}>Where AI pays off, and where it does not.</div>
+  </div>
+
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start',paddingBottom:'20px',marginBottom:'20px',borderBottom:'1px solid #e2e8f0'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-lede</div>
+      <div>clamp(17.5px, 1.6vw, 20px)</div>
+      <div>shown at 19px / 400 / 1.55</div>
+      <div style={{color:'#64748b'}}>Paragraph under H1 and H2, 50ch</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px',fontSize:'19px',fontWeight:400,lineHeight:1.55,color:'#1e293b'}}>Where AI pays off, and where it does not.</div>
+  </div>
+
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start',paddingBottom:'20px',marginBottom:'20px',borderBottom:'1px solid #e2e8f0'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-body</div>
+      <div>17px</div>
+      <div>17px / 400 / 1.62</div>
+      <div style={{color:'#64748b'}}>Running copy, 60ch</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px',fontSize:'17px',fontWeight:400,lineHeight:1.62,color:'#1e293b'}}>Where AI pays off, and where it does not.</div>
+  </div>
+
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start',paddingBottom:'20px',marginBottom:'20px',borderBottom:'1px solid #e2e8f0'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-card</div>
+      <div>15.5px</div>
+      <div>15.5px / 400 / 1.58</div>
+      <div style={{color:'#64748b'}}>Copy inside cards and doors</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px',fontSize:'15.5px',fontWeight:400,lineHeight:1.58,color:'#475569'}}>Where AI pays off, and where it does not.</div>
+  </div>
+
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start',paddingBottom:'20px',marginBottom:'20px',borderBottom:'1px solid #e2e8f0'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-small</div>
+      <div>14px</div>
+      <div>14px / 400 / 1.55</div>
+      <div style={{color:'#64748b'}}>Captions, footnotes, sticky bar</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px',fontSize:'14px',fontWeight:400,lineHeight:1.55,color:'#475569'}}>Where AI pays off, and where it does not.</div>
+  </div>
+
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start',paddingBottom:'20px',marginBottom:'20px',borderBottom:'1px solid #e2e8f0'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-kicker</div>
+      <div>11.5px mono</div>
+      <div>11.5px / 700 / .15em / uppercase</div>
+      <div style={{color:'#64748b'}}>Section eyebrow, ink is --color-accent-ink, 26 by 2px orange rule before it</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px',display:'flex',alignItems:'center',gap:'10px'}}>
+      <div style={{width:'26px',height:'2px',background:'#f95916',flexShrink:0}} />
+
+      <div style={{fontFamily:'ui-monospace,monospace',fontSize:'11.5px',fontWeight:700,letterSpacing:'.15em',textTransform:'uppercase',color:'#b02c00'}}>Where AI pays off</div>
+    </div>
+  </div>
+
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start',paddingBottom:'20px',marginBottom:'20px',borderBottom:'1px solid #e2e8f0'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-micro</div>
+      <div>10px mono</div>
+      <div>10px / 700 / 1.8 / .12em / uppercase</div>
+      <div style={{color:'#64748b'}}>Stat labels, footer headings, chips</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px',fontFamily:'ui-monospace,monospace',fontSize:'10px',fontWeight:700,lineHeight:1.8,letterSpacing:'.12em',textTransform:'uppercase',color:'#64748b'}}>Where AI pays off, and where it does not.</div>
+  </div>
+
+  <div style={{display:'flex',flexWrap:'wrap',gap:'18px',alignItems:'flex-start'}}>
+    <div style={{width:'196px',flexShrink:0,fontFamily:'ui-monospace,monospace',fontSize:'11.5px',lineHeight:1.65,color:'#475569'}}>
+      <div style={{fontWeight:700,color:'#0f172a'}}>--scale-stat</div>
+      <div>clamp(28px, 3vw, 36px)</div>
+      <div>shown at 32px / 700 / 1 / tabular-nums</div>
+      <div style={{color:'#64748b'}}>Proof-strip numbers, micro label beneath</div>
+    </div>
+
+    <div style={{flex:'1 1 260px',minWidth:'240px'}}>
+      <div style={{fontSize:'32px',fontWeight:700,lineHeight:1,fontVariantNumeric:'tabular-nums',color:'#0f172a'}}>3.24:1</div>
+      <div style={{marginTop:'8px',fontFamily:'ui-monospace,monospace',fontSize:'10px',fontWeight:700,lineHeight:1.8,letterSpacing:'.12em',textTransform:'uppercase',color:'#64748b'}}>Orange on white, measured</div>
+    </div>
+  </div>
+</div>
+
+The specimen sheet sits on white with a hairline because that is the only surface this system has. The ink values are the real role tokens, and they are tuned for `#ffffff`.
 
 The mono eyebrow is the one device the estate genuinely owns. It appears 29 times on the live site and carries every section label, every year and every stat caption. Keep it everywhere.
 
@@ -339,6 +459,130 @@ The mono eyebrow is the one device the estate genuinely owns. It appears 29 time
 
 The wireframe has no named spacing scale. It uses literal pixels, and they cluster tightly enough to ladder. `--space-1` through `--space-15` above is that ladder. The numbers are real, the naming is ours, and the row is marked inferred in the provenance table.
 
+Drawn to scale, the ladder looks like this. Steps 1 to 8 are close-packed for inside-component work. From step 9 the gaps widen fast, because that is where the layout stops adjusting and starts separating.
+
+<div style={{margin:'24px 0',fontFamily:'ui-monospace,monospace',fontSize:'11.5px'}}>
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-1</div>
+
+    <div style={{width:'5px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>5px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-2</div>
+
+    <div style={{width:'7px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>7px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-3</div>
+
+    <div style={{width:'9px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>9px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-4</div>
+
+    <div style={{width:'11px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>11px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-5</div>
+
+    <div style={{width:'14px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>14px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-6</div>
+
+    <div style={{width:'18px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>18px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-7</div>
+
+    <div style={{width:'22px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>22px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-8</div>
+
+    <div style={{width:'26px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>26px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-9</div>
+
+    <div style={{width:'32px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>32px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-10</div>
+
+    <div style={{width:'40px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>40px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-11</div>
+
+    <div style={{width:'48px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>48px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-12</div>
+
+    <div style={{width:'56px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>56px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-13</div>
+
+    <div style={{width:'64px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>64px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px',marginBottom:'7px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-14</div>
+
+    <div style={{width:'88px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>88px</div>
+  </div>
+
+  <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
+    <div style={{width:'88px',flexShrink:0,fontWeight:600}}>--space-15</div>
+
+    <div style={{width:'112px',height:'13px',background:'#f95916',borderRadius:'2px',flexShrink:0}} />
+
+    <div style={{opacity:0.6}}>112px</div>
+  </div>
+</div>
+
 **Rhythm.** Sections run `112px` top and bottom, `64px` below 900px. The hero is the exception: `88px` top, `96px` bottom. Card grids gap `18px`. Two-column splits gap `54–64px`. Paragraph bottom margin is `18px`.
 
 **Container.** `1160px` max width with `40px` gutters, `22px` below 900px. Reading measures are set in `ch`, not px, so they survive a font swap: `17ch` on H1, `19ch` on H2, `50ch` on the lede, `60ch` on body, `58ch` on pull quotes.
@@ -346,6 +590,81 @@ The wireframe has no named spacing scale. It uses literal pixels, and they clust
 **Breakpoints.** The wireframe uses thirteen: 560, 640, 680, 720, 760, 860, 900, 940, 980, 1080, 1100, 1180, 1400. Only 900 moves global tokens. The four-step `--bp-*` set is a consolidation we propose, not something the file states. Build against it, then do one visual pass at the dropped widths.
 
 **Grid columns.** Proof names `repeat(5,1fr)` → 3 at 720px. Stats `repeat(3,1fr)`. Offer cards `1fr 1fr` → 1 at 760px. Split sections `.4fr .6fr` → 1 at 900px. Qualify `.36fr .64fr` → 1 at 940px. Client wall `repeat(4,1fr)` → 2 at 860px.
+
+---
+
+## Corners and elevation
+
+Six radii, and the step between each one is small on purpose. A chip and a panel should not look like they came from different kits.
+
+<div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(150px,1fr))',gap:'18px',margin:'24px 0'}}>
+  <div>
+    <div style={{background:'#f95916',height:'72px',borderRadius:'5px'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'12.5px',fontWeight:600}}>--radius-xs</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'11.5px',opacity:0.65}}>5px</div>
+    <div style={{fontSize:'12.5px',marginTop:'4px'}}>Chips, micro tags, the week strip.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#f95916',height:'72px',borderRadius:'9px'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'12.5px',fontWeight:600}}>--radius-sm</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'11.5px',opacity:0.65}}>9px</div>
+    <div style={{fontSize:'12.5px',marginTop:'4px'}}>Small button.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#f95916',height:'72px',borderRadius:'11px'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'12.5px',fontWeight:600}}>--radius-md</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'11.5px',opacity:0.65}}>11px</div>
+    <div style={{fontSize:'12.5px',marginTop:'4px'}}>Primary button, icon tile.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#f95916',height:'72px',borderRadius:'14px'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'12.5px',fontWeight:600}}>--radius</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'11.5px',opacity:0.65}}>14px</div>
+    <div style={{fontSize:'12.5px',marginTop:'4px'}}>Case cards, orbit cards.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#f95916',height:'72px',borderRadius:'20px'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'12.5px',fontWeight:600}}>--radius-lg</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'11.5px',opacity:0.65}}>20px</div>
+    <div style={{fontSize:'12.5px',marginTop:'4px'}}>Panels, cards, dark bands.</div>
+  </div>
+
+  <div>
+    <div style={{background:'#f95916',height:'72px',borderRadius:'999px'}} />
+
+    <div style={{marginTop:'10px',fontFamily:'ui-monospace,monospace',fontSize:'12.5px',fontWeight:600}}>--radius-pill</div>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'11.5px',opacity:0.65}}>999px</div>
+    <div style={{fontSize:'12.5px',marginTop:'4px'}}>Badges and round buttons only.</div>
+  </div>
+</div>
+
+Three shadows, and nothing else is allowed to signal depth. Hover moves exactly one step up. Here they are on `--color-surface-sunken`, at the exact values in the token sheet.
+
+<div style={{background:'#f8fafc',border:'1px solid #cbd5e1',borderRadius:'14px',padding:'28px',margin:'24px 0',display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(160px,1fr))',gap:'22px'}}>
+  <div style={{background:'#ffffff',border:'1px solid #e2e8f0',borderRadius:'14px',padding:'16px',minHeight:'104px',boxShadow:'0 1px 2px rgba(11,18,32,.05), 0 1px 3px rgba(11,18,32,.04)'}}>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12.5px',fontWeight:700,color:'#0f172a'}}>--shadow-1</div>
+    <div style={{fontSize:'12.5px',marginTop:'6px',lineHeight:1.5,color:'#475569'}}>Resting state. Track-record cards, anything sitting on the page.</div>
+  </div>
+
+  <div style={{background:'#ffffff',border:'1px solid #e2e8f0',borderRadius:'14px',padding:'16px',minHeight:'104px',boxShadow:'0 2px 4px rgba(11,18,32,.05), 0 12px 28px rgba(11,18,32,.09)'}}>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12.5px',fontWeight:700,color:'#0f172a'}}>--shadow-2</div>
+    <div style={{fontSize:'12.5px',marginTop:'6px',lineHeight:1.5,color:'#475569'}}>Open or hovered card. Also the resting primary button.</div>
+  </div>
+
+  <div style={{background:'#ffffff',border:'1px solid #e2e8f0',borderRadius:'14px',padding:'16px',minHeight:'104px',boxShadow:'0 4px 8px rgba(11,18,32,.06), 0 24px 56px rgba(11,18,32,.13)'}}>
+    <div style={{fontFamily:'ui-monospace,monospace',fontSize:'12.5px',fontWeight:700,color:'#0f172a'}}>--shadow-3</div>
+    <div style={{fontSize:'12.5px',marginTop:'6px',lineHeight:1.5,color:'#475569'}}>Primary button on hover, paired with a 1px lift. The top of the ladder.</div>
+  </div>
+</div>
 
 ---
 
