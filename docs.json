@@ -17,14 +17,19 @@
           "positioning",
           "audiences",
           "messaging",
-          "voice"
+          "voice",
+          "channels"
         ],
         "icon": "compass"
       },
       {
         "group": "Ready to use",
         "icon": "clipboard-copy",
-        "pages": []
+        "pages": [
+          "posts",
+          "website",
+          "emails"
+        ]
       },
       {
         "group": "Reference",
