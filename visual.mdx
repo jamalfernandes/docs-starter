@@ -1,0 +1,323 @@
+---
+title: "Visual identity"
+description: "Colour, type, spacing and the copy-ready CSS token sheet for the build."
+icon: "palette"
+noindex: true
+---
+
+## How to use this page
+
+Copy the token block below into your repo as `tokens.css`, load it first, and build every rule against the custom properties rather than against raw values. Everything under it is provenance: which file each number came from, how confident we are, and what still needs your confirmation before a value is safe to ship.
+
+<Note>
+Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is authoritative for `--font-*` and `--color-*`. The **approved 4 September wireframe** is authoritative for `--space-*`, `--scale-*`, radii, shadows and layout. Where they disagree, the row in the provenance table says so.
+</Note>
+
+---
+
+## The token sheet
+
+```css
+/* ============================================================
+   xherman.com — design tokens
+   Boost33 · sources: xherman.com capture 2026-07-23,
+   xherman-homepage-design.html 2026-09-04
+   Values marked INFERRED are not literal in either source.
+   ============================================================ */
+:root {
+
+  /* ---- Brand (live site: inline tailwind.config, verbatim) ---- */
+  --color-brand:            #f95916;  /* brand.orange */
+  --color-brand-hover:      #ea580c;  /* live: hover:bg-orange-600 */
+  --color-brand-secondary:  #451d9e;  /* brand.purple */
+  --color-brand-black:      #111827;  /* brand.black — declared, never used */
+  --color-brand-grey:       #374151;  /* brand.grey  — declared, never used */
+
+  /* ---- Neutral ramp (live site: slate override, = stock Tailwind) ---- */
+  --color-slate-50:   #f8fafc;
+  --color-slate-100:  #f1f5f9;
+  --color-slate-200:  #e2e8f0;
+  --color-slate-300:  #cbd5e1;
+  --color-slate-400:  #94a3b8;
+  --color-slate-500:  #64748b;
+  --color-slate-600:  #475569;
+  --color-slate-700:  #334155;
+  --color-slate-800:  #1e293b;
+  --color-slate-900:  #0f172a;
+
+  /* ---- Roles (live site: resolved from class usage) ---- */
+  --color-surface:          #ffffff;  /* body bg-white */
+  --color-surface-sunken:   #f8fafc;  /* bg-slate-50, x11 */
+  --color-surface-muted:    #f1f5f9;  /* badge/chip bg */
+  --color-text:             #1e293b;  /* body text-slate-800 */
+  --color-text-heading:     #0f172a;  /* text-slate-900, x21 */
+  --color-text-secondary:   #475569;  /* text-slate-600, x14 */
+  --color-text-muted:       #64748b;  /* text-slate-500, x14 */
+  --color-border:           #e2e8f0;  /* border-slate-200, x35 */
+  --color-border-subtle:    #f1f5f9;  /* border-slate-100, x12 */
+  --color-border-strong:    #cbd5e1;
+
+  /* ---- Additions required by the approved wireframe ---- */
+  --color-accent-ink:       #b02c00;  /* orange safe for small text */
+  --color-accent-hi:        #ff7134;  /* top stop of the button gradient */
+  --color-accent-wash:      #fff5f0;
+  --color-secondary-ink:    #3a1785;
+  --color-secondary-wash:   #f3efff;
+  --color-night:            #0b1220;  /* dark bands: owners, close, wandpanel */
+  --color-night-2:          #111a2b;
+  --color-on-night:         #c9d3e2;
+  --color-on-night-muted:   #8494ab;
+  --color-footer:           #070c16;
+
+  /* ---- Type families (live site: NO web font is loaded) ---- */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+               sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+  /* The live site has no display face. The wireframe rendered in "Outfit".
+     Do not ship the line below until the font name is confirmed. */
+  --font-display: /* [awaiting Xavier] */ var(--font-sans);
+  --font-body:    var(--font-sans);
+
+  /* ---- Type scale (wireframe, verbatim) ---- */
+  --scale-h1:      clamp(38px, 5.4vw, 66px);
+  --scale-h2:      clamp(29px, 3.5vw, 44px);
+  --scale-h3:      clamp(20px, 2.1vw, 25px);
+  --scale-h4:      17.5px;
+  --scale-lede:    clamp(17.5px, 1.6vw, 20px);
+  --scale-body:    17px;
+  --scale-card:    15.5px;
+  --scale-small:   14px;
+  --scale-kicker:  11.5px;   /* mono eyebrow */
+  --scale-micro:   10px;     /* mono stat label, footer label */
+  --scale-stat:    clamp(28px, 3vw, 36px);
+  --scale-pivot:   clamp(19px, 2vw, 23px);
+
+  /* ---- Line height (wireframe) ---- */
+  --leading-h1:      1.04;
+  --leading-h2:      1.1;
+  --leading-h3:      1.24;
+  --leading-h4:      1.3;
+  --leading-lede:    1.55;
+  --leading-body:    1.62;
+  --leading-card:    1.58;
+  --leading-mono:    1.8;
+
+  /* ---- Tracking (wireframe) ---- */
+  --tracking-h1:      -.035em;
+  --tracking-display: -.028em;  /* h2, h4 default */
+  --tracking-h3:      -.02em;
+  --tracking-ui:      -.01em;
+  --tracking-kicker:  .15em;
+  --tracking-label:   .12em;    /* mono stat + footer labels */
+
+  /* ---- Weights (wireframe) ---- */
+  --weight-body:     400;
+  --weight-medium:   600;
+  --weight-strong:   650;  /* buttons, card titles */
+  --weight-bold:     700;  /* h1–h4, stat numbers, mono labels */
+
+  /* ---- Spacing scale — INFERRED ladder over wireframe values ---- */
+  --space-1:   5px;
+  --space-2:   7px;
+  --space-3:   9px;
+  --space-4:   11px;
+  --space-5:   14px;
+  --space-6:   18px;
+  --space-7:   22px;
+  --space-8:   26px;
+  --space-9:   32px;
+  --space-10:  40px;
+  --space-11:  48px;
+  --space-12:  56px;
+  --space-13:  64px;
+  --space-14:  88px;
+  --space-15:  112px;
+
+  /* ---- Layout (wireframe, verbatim) ---- */
+  --container:      1160px;
+  --pad:            40px;    /* 22px at <=900px */
+  --section-y:      112px;   /* 64px at <=900px */
+  --nav-h:          70px;    /* 62px at <=720px */
+  --sticky-offset:  104px;   /* sticky side columns */
+
+  /* ---- Measure (wireframe, verbatim) ---- */
+  --measure-h1:     17ch;
+  --measure-h2:     19ch;
+  --measure-lede:   50ch;
+  --measure-body:   60ch;
+  --measure-quote:  58ch;
+  --measure-note:   74ch;
+
+  /* ---- Radii (wireframe) ---- */
+  --radius-xs:    5px;   /* chips, micro tags, week strip */
+  --radius-sm:    9px;   /* small button */
+  --radius-md:    11px;  /* primary button, icon tile */
+  --radius:       14px;  /* --r: case cards, orbit cards */
+  --radius-lg:    20px;  /* --r-lg: panels, cards, dark bands */
+  --radius-pill:  999px;
+
+  /* ---- Elevation (wireframe, verbatim) ---- */
+  --shadow-1: 0 1px 2px rgba(11,18,32,.05), 0 1px 3px rgba(11,18,32,.04);
+  --shadow-2: 0 2px 4px rgba(11,18,32,.05), 0 12px 28px rgba(11,18,32,.09);
+  --shadow-3: 0 4px 8px rgba(11,18,32,.06), 0 24px 56px rgba(11,18,32,.13);
+
+  /* ---- Breakpoints — INFERRED consolidation of 13 ad-hoc values ---- */
+  --bp-sm:  640px;
+  --bp-md:  760px;
+  --bp-lg:  900px;   /* the one that moves --pad and --section-y */
+  --bp-xl:  1180px;
+
+  /* ---- Motion (wireframe) ---- */
+  --ease:           cubic-bezier(.22,.7,.31,1);
+  --duration-fast:  .16s;
+  --duration-base:  .2s;
+  --duration-slow:  .6s;
+}
+
+@media (max-width: 900px) {
+  :root { --pad: 22px; --section-y: 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+```
+
+---
+
+## Provenance
+
+| Token prefix | Value source | Confidence | Open question |
+| --- | --- | --- | --- |
+| `--color-brand*`, `--color-slate-*` | Live site, inline `tailwind.config` read verbatim | **High.** `#f95916` independently re-measured in the Lighthouse contrast audit of the same capture | `brand.black` and `brand.grey` are declared and used nowhere. Keep or delete? |
+| `--color-*` roles (surface, text, border) | Live site, resolved from Tailwind utility classes with occurrence counts | **High.** Class names are literal in the capture; the hex is Tailwind's documented output | None |
+| `--color-accent-ink`, `-night`, `-wash`, `-on-night` | Wireframe `:root`, verbatim. No live-site equivalent | **High for the value, medium for the mandate.** These exist because the wireframe added dark bands the live site does not have | Are the dark bands approved as final, or wireframe styling only? |
+| `--color-brand-hover` | Live site `hover:bg-orange-600` = `#ea580c` | **High** | The design-language extract recommends `#df4609` instead (hue-correct derivative, taken from xhacking.app). Live value kept here. Xavier picks. |
+| `--font-sans`, `--font-mono` | Live site. Proven by absence: no `@font-face`, no `<link>` to any font, no font file in the network log. The site renders Tailwind's defaults | **High, and it is a null result** | See Typography below |
+| `--font-display` | **Nothing.** Left as `[awaiting Xavier]` aliased to `--font-sans` | **None** | Blocked |
+| `--scale-*`, `--leading-*`, `--tracking-*`, `--weight-*` | Wireframe, copied rule by rule from the `<style>` block | **High** | The wireframe's clamps assume a display face that resolves. Re-check the h1 clamp once the real font lands. |
+| `--space-*` | Wireframe. Every value appears in the file; the **ladder is inferred** | **Medium.** The numbers are real, the naming and the ordering are ours | The wireframe has no spacing scale. It uses literal px. Adopt this ladder or keep literals? |
+| `--container`, `--pad`, `--section-y`, `--measure-*` | Wireframe `:root` and rules, verbatim | **High** | Live site container is 1152px, wireframe is 1160px. Trivial, but pick one. |
+| `--radius-*` | Wireframe. `--r` and `--r-lg` verbatim; the xs/sm/md steps are named by us from observed `5px` / `9px` / `11px` | **High value, inferred naming** | None |
+| `--shadow-1/2/3` | Wireframe, verbatim | **High** | None |
+| `--bp-*` | Wireframe. **Inferred.** The file uses 13 different max-widths | **Low** | Consolidating to four breakpoints will move some layouts. Needs a visual pass. |
+
+---
+
+## Colour
+
+| Swatch | Token | Hex | Role |
+| --- | --- | --- | --- |
+| ● | `--color-brand` | `#f95916` | Action. Buttons, forward links, eyebrow rules, active states. |
+| ● | `--color-accent-ink` | `#b02c00` | Orange text at small sizes. Never the fill. |
+| ● | `--color-brand-secondary` | `#451d9e` | Emphasis and category. Focus rings, door rules, the short-check band. |
+| ● | `--color-text-heading` | `#0f172a` | Headings. |
+| ● | `--color-text` | `#1e293b` | Body copy. |
+| ● | `--color-text-secondary` | `#475569` | Supporting copy inside cards. |
+| ● | `--color-text-muted` | `#64748b` | Captions, mono labels, legends. |
+| ● | `--color-border` | `#e2e8f0` | Default 1px border. |
+| ● | `--color-surface-sunken` | `#f8fafc` | Alternating band, proof strip. |
+| ● | `--color-night` | `#0b1220` | Dark bands and the wand panel. |
+
+`#f95916` and `#451d9e` are the only two values that already agree across every Xavier property. That agreement is the foundation. Everything else is being decided here for the first time.
+
+**Usage rules.**
+
+- Orange is the only action colour on this site. Purple never becomes a button.
+- Orange never carries running text on white. Lighthouse measured `#f95916` on `#ffffff` at **3.24:1** and on `#f1f5f9` at **2.96:1**. Both fail the 4.5:1 body-text threshold, and the live site currently uses it for 12px mono labels. Use `--color-accent-ink` for any orange text under 24px.
+- White on orange also measured **3.24:1**. Orange-filled buttons need a dark label. The wireframe uses `#180600`, not white.
+- Neutrals carry all text. Purple is for emphasis, borders and focus, not paragraphs.
+- No value in `--color-night*` ever touches the page background. The dark bands are sections, not a theme. There is no dark mode anywhere in the estate and none is being designed.
+
+---
+
+## Typography
+
+<Warning>
+**The live site has no typeface.** The 23 July capture loads no font file at all: no `@font-face`, no Google Fonts link, no font request in the network log. It loads Tailwind Play CDN, React 18, Babel Standalone, Lucide and Plausible, and nothing else. Every `font-sans` and `font-mono` class resolves to the browser default, so xherman.com renders in San Francisco on Mac, Segoe UI on Windows, Roboto on Android.
+</Warning>
+
+That null result is the authoritative answer, and it is why `--font-display` is `[awaiting Xavier]`.
+
+**What the mockup rendered in, and why it is not evidence.** The 4 September wireframe declares `"Outfit"` for display and `"InterX"` for UI. Both `@font-face` rules resolve with `local()` only, so they picked up whatever was installed on the Boost33 machine. On the 4 September call Jamal flagged exactly this: the wireframe was rendering in Boost33 fonts, not Xavier's. Treat the mockup's letterforms as placeholder.
+
+**Where "Outfit" actually comes from.** Not the capture. It is self-hosted as a variable TTF on `experiencehacking.eu`, alongside Inter, which is used there for buttons only. It is the single real type choice anyone in the estate has made, and it costs no new dependency and no Google CDN call, which suits the sovereignty positioning. That makes it the obvious candidate. It is a recommendation, not a recovered fact, and it needs Xavier to say yes.
+
+| Step | Token | Size | Weight | Leading | Used for |
+| --- | --- | --- | --- | --- | --- |
+| H1 | `--scale-h1` | 38 → 66px | 700 | 1.04 | Hero headline. Capped at 17ch. |
+| H2 | `--scale-h2` | 29 → 44px | 700 | 1.1 | Section headings. Capped at 19ch. |
+| H3 | `--scale-h3` | 20 → 25px | 700 | 1.24 | Sub-headings inside sections. |
+| H4 | `--scale-h4` | 17.5px | 700 | 1.3 | Card titles. |
+| Lede | `--scale-lede` | 17.5 → 20px | 400 | 1.55 | The paragraph under H1 and H2. 50ch. |
+| Body | `--scale-body` | 17px | 400 | 1.62 | Running copy. 60ch. |
+| Card | `--scale-card` | 15.5px | 400 | 1.58 | Copy inside cards and doors. |
+| Small | `--scale-small` | 14px | 400 | 1.55 | Captions, footnotes, sticky bar. |
+| Kicker | `--scale-kicker` | 11.5px mono | 700 | — | Section eyebrow. Uppercase, `.15em`, orange-ink, with a 26 × 2px orange rule before it. |
+| Micro | `--scale-micro` | 10px mono | 700 | 1.8 | Stat labels, footer headings, chips. Uppercase, `.12em`. |
+| Stat | `--scale-stat` | 28 → 36px | 700 | 1 | Proof-strip numbers. `font-variant-numeric: tabular-nums`. |
+
+The mono eyebrow is the one device the estate genuinely owns. It appears 29 times on the live site and carries every section label, every year and every stat caption. Keep it everywhere.
+
+---
+
+## Spacing and layout
+
+The wireframe has no named spacing scale. It uses literal pixels, and they cluster tightly enough to ladder. `--space-1` through `--space-15` above is that ladder. The numbers are real, the naming is ours, and the row is marked inferred in the provenance table.
+
+**Rhythm.** Sections run `112px` top and bottom, dropping to `64px` below 900px. The hero is the exception: `88px` top, `96px` bottom. Card grids gap `18px`. Two-column splits gap `54–64px`. Paragraph bottom margin is `18px`.
+
+**Container.** `1160px` max width with `40px` gutters, falling to `22px` below 900px. Reading measures are set in `ch`, not px, so they survive a font swap: `17ch` on H1, `19ch` on H2, `50ch` on the lede, `60ch` on body, `58ch` on pull quotes.
+
+**Breakpoints.** The wireframe uses thirteen: 560, 640, 680, 720, 760, 860, 900, 940, 980, 1080, 1100, 1180, 1400. Only 900 moves global tokens. The four-step `--bp-*` set is a consolidation we propose, not something the file states. Build against it, then do one visual pass at the dropped widths.
+
+**Grid columns.** Proof names `repeat(5,1fr)` → 3 at 720px. Stats `repeat(3,1fr)`. Offer cards `1fr 1fr` → 1 at 760px. Split sections `.4fr .6fr` → 1 at 900px. Qualify `.36fr .64fr` → 1 at 940px. Client wall `repeat(4,1fr)` → 2 at 860px.
+
+---
+
+## Component notes
+
+<AccordionGroup>
+<Accordion title="Proof strip" icon="layout-template">
+A band, not a section. `--color-surface-sunken` with a 1px hairline top and bottom, `52px / 44px` padding, deliberately shorter than the sections around it. Two rows: client names on a 5-column grid at 20px display weight 600, then a `--line-2` rule, then three stats on a 3-column grid. First cell aligns left, last aligns right, middle centres. Stat number is `--scale-stat` at 700 with tabular figures; the label under it is 10px mono uppercase at `.12em`. The visual job is compression: proof is sandwiched between hero and offer, never stacked into a wall.
+</Accordion>
+
+<Accordion title="Floating track-record cards" icon="orbit">
+Eight `<details>` cards positioned absolutely around a central portrait hub inside a 700px-tall relative box, connected by dashed SVG lines at `--color-border-strong`, `stroke-dasharray: 3 5`. Cards are 262px wide, `--radius`, 1px `--color-border`, `--shadow-1`. Summary row is `52px` minimum height: an orange mono year, then a 15px display-weight-650 title, then a 20px circular `+` that rotates 45° and fills orange on open. Open state swaps the border to `--color-brand` and lifts to `--shadow-2`. Below 1080px the whole thing collapses to a plain 2-column grid, the hub becomes a full-width 250px block, and the connector lines are hidden. Build the grid first and layer the absolute positions on top.
+</Accordion>
+
+<Accordion title="Problem selector" icon="list-checks">
+A self-qualification checklist that reads symptoms and never asks for revenue or headcount. Seven `<button aria-pressed>` rows inside one rounded container, `--radius-lg`, 1px `--color-border-strong`, hairlines between rows. Each row is `56px` minimum, 16px copy at `--color-text-secondary`, with a 22px `6px`-radius box on the left. On press the row background goes `--color-accent-wash`, the text darkens to `--color-text-heading`, the box fills `--color-brand` with a `#7a2a00` border and the tick fades in. A live mono tally sits in the sticky left column. Real buttons with real pressed state, not checkboxes, because the tally has to be keyboard reachable.
+</Accordion>
+
+<Accordion title="CTA" icon="mouse-pointer-click">
+Primary button: `linear-gradient(180deg, --color-accent-hi, --color-brand)` with a `#7a2a00` 1px border, `--radius-md`, `15px 26px` padding, `52px` minimum height, 16.5px label at weight 650, dark `#180600` text, an inset white highlight plus `--shadow-2`. Hover lifts 1px to `--shadow-3` and nudges the arrow 3px right. Ghost variant is white on `--color-border-strong`. Purple variant exists for secondary paths. The page also carries a sticky bottom action bar on `--color-night` at 96% with a 2px orange top border; below 760px its copy hides and the button goes full width, which is why the nav drops its own button at 720px. One action colour, one action shape, everywhere.
+</Accordion>
+</AccordionGroup>
+
+**What holds them together.** Three things, and they are the whole system. A 1px `--color-border` hairline opens and closes every band. An orange mono eyebrow labels every section. Elevation only ever comes from `--shadow-1`, `-2`, `-3`, and hover moves exactly one step up plus a 1–2px lift. Nothing else is allowed to signal depth.
+
+---
+
+## Open
+
+<Warning>
+Two items block this page from being final. Both are Xavier's.
+</Warning>
+
+<Steps>
+<Step title="Current site CSS and the confirmed font name">
+The 23 July capture is a Lighthouse report, not a source dump. It gave us the colours, the class usage and the measured contrast ratios, and it proved there is no web font. It cannot give us anything Xavier has changed since, and it cannot name a display face that does not exist on the site. `--font-display` stays `[awaiting Xavier]` until Xavier sends the current HTML and says yes or no to Outfit. Everything typographic downstream, including whether the h1 clamp still holds, waits on that.
+</Step>
+
+<Step title="One experience figure, applied everywhere">
+Four different year-counts are live across Xavier's properties right now, including 15+ on the page that takes the money. The wireframe deliberately leaves the figure out of the proof strip rather than pick one. Xavier chooses the number, then it goes everywhere without variation. Related and equally unresolved: "50+ client projects" is doing three different jobs across xherman.com and LinkedIn, and is marked `verify` in the wireframe until Xavier confirms it as a career total or drops it.
+</Step>
+</Steps>
+
+Two smaller decisions, neither blocking: whether `brand.black #111827` and `brand.grey #374151` keep a job or get deleted, and whether the hover orange stays at the live `#ea580c` or moves to `#df4609`.

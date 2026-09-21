@@ -28,7 +28,9 @@
       {
         "group": "Reference",
         "icon": "library",
-        "pages": []
+        "pages": [
+          "visual"
+        ]
       },
       {
         "group": "Internal · Boost33",
