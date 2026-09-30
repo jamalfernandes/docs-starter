@@ -9,7 +9,7 @@ noindex: true
 
 Copy the token block below into your repo as `tokens.css` and load it before anything else. Build every rule against the custom properties, never against raw values. Everything under the block is provenance: which file each number came from, how far we trust it, and what Xavier still has to confirm before a value is safe to ship.
 
-<Note>
+<Note icon="file-search">
 Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is authoritative for `--font-*` and `--color-*`. The **approved 4 September wireframe** is authoritative for `--space-*`, `--scale-*`, radii, shadows and layout. Where they disagree, the provenance table says which one wins.
 </Note>
 
@@ -307,7 +307,7 @@ Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is 
 
 ## Typography
 
-<Warning>
+<Warning icon="type">
 **The live site has no typeface.** The 23 July capture loads no font file at all: no `@font-face`, no Google Fonts link, no font request in the network log. It loads Tailwind Play CDN, React 18, Babel Standalone, Lucide and Plausible, and nothing else. Every `font-sans` and `font-mono` class resolves to the browser default, so xherman.com renders in San Francisco on Mac, Segoe UI on Windows, Roboto on Android.
 </Warning>
 
@@ -694,7 +694,7 @@ Primary button: `linear-gradient(180deg, --color-accent-hi, --color-brand)` with
 
 ## Open
 
-<Warning>
+<Warning icon="lock">
 Two items block this page from being final. Both are Xavier's.
 </Warning>
 
@@ -704,7 +704,9 @@ The 23 July capture is a Lighthouse report, not a source dump. It gave us the co
 </Step>
 
 <Step title="One experience figure, applied everywhere" icon="clock">
-Four different year-counts are live across Xavier's properties right now, including 15+ on the page that takes the money. The wireframe deliberately leaves the figure out of the proof strip rather than pick one. Xavier chooses the number, then it goes everywhere without variation. Equally unresolved: "50+ client projects" is doing three different jobs across xherman.com and LinkedIn, and is marked `verify` in the wireframe until Xavier confirms it as a career total or drops it.
+Four different year-counts are live across Xavier's properties right now, including 15+ on the page that takes the money. The wireframe deliberately leaves the figure out of the proof strip rather than pick one. Xavier chooses the number, then it goes everywhere without variation.
+
+"50+ client projects" was the other half of this and closed on 21 September. It stands as published, confirmed as a conservative floor, and the `verify` chip comes off the wireframe.
 </Step>
 </Steps>
 
