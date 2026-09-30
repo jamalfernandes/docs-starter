@@ -69,5 +69,9 @@
   "description": "Private working brand reference for Xavier Herman. Prepared by Boost33.",
   "search": {
     "prompt": "Search the kit"
+  },
+  "banner": {
+    "content": "**Draft, 30 September 2026.** Nothing on this site is approved. Every page is under review with Xavier and is expected to change.",
+    "dismissible": false
   }
 }
