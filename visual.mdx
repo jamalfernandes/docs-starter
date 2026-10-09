@@ -10,7 +10,27 @@ noindex: true
 Copy the token block below into your repo as `tokens.css` and load it before anything else. Build every rule against the custom properties, never against raw values. Everything under the block is provenance: which file each number came from, how far we trust it, and what Xavier still has to confirm before a value is safe to ship.
 
 <Note icon="file-search">
-Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is authoritative for `--font-*` and `--color-*`. The **approved 4 September wireframe** is authoritative for `--space-*`, `--scale-*`, radii, shadows and layout. Where they disagree, the provenance table says which one wins.
+  Three sources feed this sheet, in this order of authority.
+
+  1. **The live stylesheet, `xherman.com/assets/css/site.css?v=2.0`, read 7 October 2026.** Authoritative for `--font-*` and for the brand colours. This is the newest source and it overrides the other two wherever they disagree.
+  2. **The 23 July Lighthouse capture.** Still useful for measured contrast ratios and class-usage counts. **Its font finding is obsolete** — it reported no webfont, and the site now self-hosts two.
+  3. **The approved 4 September wireframe.** Authoritative for `--space-*`, `--scale-*`, radii, shadows and layout, none of which the live CSS contradicts.
+
+  Where they disagree, the provenance table says which one wins.
+</Note>
+
+<Note icon="link">
+  **The live stylesheet opens with a comment worth reading.** It names this kit as its own source, which means the two are not independent and should not be treated as cross-confirmation:
+
+  ```text
+  /* xherman.com — V2 stylesheet
+     Source design: Boost33 homepage mockup v2 (30 Sept 2026)
+     Tokens: Brand Kit /visual (orange #f95916 = action only,
+     purple #451d9e = emphasis/focus only, slate neutrals).
+     Fonts: Outfit (display) + Inter (UI), self-hosted, OFL. */
+  ```
+
+  His site was built from this page. When this page and his site agree on a colour, that is one decision recorded twice, not two sources agreeing.
 </Note>
 
 ---
@@ -20,9 +40,14 @@ Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is 
 ```css
 /* ============================================================
    xherman.com, design tokens
-   Boost33 · sources: xherman.com capture 2026-07-23,
-   xherman-homepage-design.html 2026-09-04
-   Values marked INFERRED are not literal in either source.
+   Boost33 · sources, newest first:
+     site.css?v=2.0            read 2026-10-07  (fonts, brand colours)
+     xherman.com capture       2026-07-23       (contrast, class usage)
+     xherman-homepage-design.html 2026-09-04    (scale, space, radii)
+   Values marked INFERRED are not literal in any source.
+   KNOWN GAP: the neutral ramp below is the July Tailwind slate scale.
+   The live site has since moved to its own values. Reconcile before
+   the build — see the Typography section.
    ============================================================ */
 :root {
 
@@ -69,16 +94,19 @@ Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is 
   --color-on-night-muted:   #8494ab;
   --color-footer:           #070c16;
 
-  /* ---- Type families (live site: NO web font is loaded) ---- */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
-               sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-               "Liberation Mono", "Courier New", monospace;
-  /* The live site has no display face. The wireframe rendered in "Outfit".
-     Do not ship the line below until the font name is confirmed. */
-  --font-display: /* [awaiting Xavier] */ var(--font-sans);
-  --font-body:    var(--font-sans);
+  /* ---- Type families ----
+     RESOLVED 2026-10-07 from the live stylesheet, site.css?v=2.0.
+     Outfit and Inter are self-hosted variable woff2 (OFL), preloaded.
+     Both are on Google Fonts under the same names if you prefer the CDN,
+     but self-hosting is the current choice and it suits the sovereignty
+     positioning. Mono is the system stack on purpose: no webfont. */
+  --font-display: "Outfit", ui-sans-serif, system-ui, -apple-system,
+                  "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-body:    "Inter", ui-sans-serif, system-ui, -apple-system,
+                  "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+                  monospace;
+  --font-sans:    var(--font-body);  /* alias, for rules written before 7 Oct */
 
   /* ---- Type scale (wireframe, verbatim) ---- */
   --scale-h1:      clamp(38px, 5.4vw, 66px);
@@ -198,9 +226,9 @@ Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is 
 | `--color-*` roles (surface, text, border) | Live site, resolved from Tailwind utility classes with occurrence counts | **High.** Class names are literal in the capture; the hex is Tailwind's documented output | None |
 | `--color-accent-ink`, `-night`, `-wash`, `-on-night` | Wireframe `:root`, verbatim. No live-site equivalent | **High for the value, medium for the mandate.** These exist because the wireframe added dark bands the live site does not have | Are the dark bands approved as final, or wireframe styling only? |
 | `--color-brand-hover` | Live site `hover:bg-orange-600` = `#ea580c` | **High** | The design-language extract recommends `#df4609` instead (hue-correct derivative, taken from xhacking.app). Live value kept here. Xavier picks. |
-| `--font-sans`, `--font-mono` | Live site. Proven by absence: no `@font-face`, no `<link>` to any font, no font file in the network log. The site renders Tailwind's defaults | **High, and it is a null result** | See Typography below |
-| `--font-display` | **Nothing.** Left as `[awaiting Xavier]` aliased to `--font-sans` | **None** | Blocked |
-| `--scale-*`, `--leading-*`, `--tracking-*`, `--weight-*` | Wireframe, copied rule by rule from the `<style>` block | **High** | The wireframe's clamps assume a display face that resolves. Re-check the h1 clamp once the real font lands. |
+| `--font-display`, `--font-body` | **Live site, `site.css?v=2.0`, read 7 Oct.** `"Outfit"` for display, `"Inter"` for UI, both self-hosted variable woff2, both preloaded. Confirmed again in his legal notice | **High. Recovered fact, not a recommendation** | None. Closed |
+| `--font-mono` | Live site. System stack, no webfont loaded. Carries every small uppercase label | **High** | None |
+| `--scale-*`, `--leading-*`, `--tracking-*`, `--weight-*` | Wireframe, copied rule by rule from the `<style>` block | **High** | None. The clamps assumed a display face that resolves, and Outfit now does. Checked 7 Oct. |
 | `--space-*` | Wireframe. Every value appears in the file; the **ladder is inferred** | **Medium.** The numbers are real, the naming and the ordering are ours | The wireframe has no spacing scale. It uses literal px. Adopt this ladder or keep literals? |
 | `--container`, `--pad`, `--section-y`, `--measure-*` | Wireframe `:root` and rules, verbatim | **High** | Live site container is 1152px, wireframe is 1160px. Trivial, but pick one. |
 | `--radius-*` | Wireframe. `--r` and `--r-lg` verbatim; the xs/sm/md steps are named by us from observed `5px` / `9px` / `11px` | **High value, inferred naming** | None |
@@ -307,15 +335,30 @@ Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is 
 
 ## Typography
 
-<Warning icon="type">
-**The live site has no typeface.** The 23 July capture loads no font file at all: no `@font-face`, no Google Fonts link, no font request in the network log. It loads Tailwind Play CDN, React 18, Babel Standalone, Lucide and Plausible, and nothing else. Every `font-sans` and `font-mono` class resolves to the browser default, so xherman.com renders in San Francisco on Mac, Segoe UI on Windows, Roboto on Android.
+<Check icon="type">
+  **Resolved 7 October 2026. The typeface question is closed, and it closed from the live site rather than from Xavier.**
+
+  xherman.com now self-hosts **Outfit** for display and **Inter** for UI, both as variable woff2 under the SIL Open Font License, both preloaded in `<head>`:
+
+  ```html
+  <link rel="preload" href="/assets/fonts/outfit-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter-latin-var.woff2"  as="font" type="font/woff2" crossorigin>
+  ```
+
+  Four files in all, latin and latin-ext for each family, declared `font-weight: 100 900; font-display: swap`. The unicode ranges match Google Fonts' own subsets exactly, so these are the Google variable files rehosted. His legal notice confirms it in writing: _"Polices Inter et Outfit sous licence SIL Open Font License."_
+
+  Mono loads no webfont at all. The small uppercase labels render in the system mono stack, which differs per platform. That is faithful, not a bug.
+</Check>
+
+**What this supersedes.** The 23 July Lighthouse capture found no font file and concluded the site had no typeface. That was true of the site as it stood in July. It is not true now. Anything in an older draft that says "the live site has no typeface", or that treats Outfit as an unconfirmed recommendation, is superseded.
+
+**Weight 650 is real and it needs the variable file.** The live site uses it on the primary button, on card titles and on several `strong` elements. With a static 600/700 pair it snaps to one or the other and the whole system reads subtly wrong. Ship the variable files, not static cuts.
+
+<Warning icon="triangle-alert">
+  **One thing on this page is now out of date and has not been rewritten.** The neutral ramp in the token sheet above is the Tailwind slate scale captured in July. The live stylesheet has since moved to its own values: `--ink #0b1220` for headings, `--ink-2 #2c384f` for body, `--ink-3 #475569`, `--ink-4 #556378`, `--line #e6eaf0`.
+
+  They are close to the slate ramp but not identical. Reconciling them is a bigger change than Xavier's 7 October list asked for, and his instruction was explicitly to change nothing beyond it, so it has been left alone and flagged instead. **Before the build, pick one ramp.** The live site's own values are the safer choice, because that is what is already rendering.
 </Warning>
-
-That null result is the answer. It is also why `--font-display` is `[awaiting Xavier]`.
-
-**What the mockup rendered in, and why it is not evidence.** The 4 September wireframe declares `"Outfit"` for display and `"InterX"` for UI. Both `@font-face` rules resolve with `local()` only, so they picked up whatever was installed on the Boost33 machine. On the 4 September call Jamal flagged exactly this: the wireframe was rendering in Boost33 fonts, not Xavier's. Treat the mockup's letterforms as placeholder.
-
-**Where "Outfit" actually comes from.** Not the capture. It is self-hosted as a variable TTF on `experiencehacking.eu`, alongside Inter, which that site uses for buttons only. It is the one real type choice anyone in the estate has made. Self-hosting it costs no new dependency and no Google CDN call. That suits the sovereignty positioning. So it is the candidate to beat. It is still a recommendation rather than a recovered fact, and Xavier has to say yes.
 
 **The scale, set.** Every line below is the token doing its job, at its own size, weight, line height and tracking, on the white surface this estate actually ships. The five clamped steps are drawn at a fixed size inside their range and the label gives the clamp.
 
@@ -671,21 +714,21 @@ Three shadows, and nothing else is allowed to signal depth. Hover moves exactly 
 ## Component notes
 
 <AccordionGroup>
-<Accordion title="Proof strip" icon="layout-template">
-A band, not a section. `--color-surface-sunken` with a 1px hairline top and bottom, `52px / 44px` padding, deliberately shorter than the sections around it. Two rows: client names on a 5-column grid at 20px display weight 600, then a `--line-2` rule, then three stats on a 3-column grid. First cell aligns left, last aligns right, middle centres. Stat number is `--scale-stat` at 700 with tabular figures; the label under it is 10px mono uppercase at `.12em`. The visual job is compression: proof is sandwiched between hero and offer, never stacked into a wall.
-</Accordion>
+  <Accordion title="Proof strip" icon="layout-template">
+    A band, not a section. `--color-surface-sunken` with a 1px hairline top and bottom, `52px / 44px` padding, deliberately shorter than the sections around it. Two rows: client names on a 5-column grid at 20px display weight 600, then a `--line-2` rule, then three stats on a 3-column grid. First cell aligns left, last aligns right, middle centres. Stat number is `--scale-stat` at 700 with tabular figures; the label under it is 10px mono uppercase at `.12em`. The visual job is compression: proof is sandwiched between hero and offer, never stacked into a wall.
+  </Accordion>
 
-<Accordion title="Floating track-record cards" icon="orbit">
-Eight `<details>` cards positioned absolutely around a central portrait hub inside a 700px-tall relative box, connected by dashed SVG lines at `--color-border-strong`, `stroke-dasharray: 3 5`. Cards are 262px wide, `--radius`, 1px `--color-border`, `--shadow-1`. Summary row is `52px` minimum height: an orange mono year, then a 15px display-weight-650 title, then a 20px circular `+` that rotates 45° and fills orange on open. Open state swaps the border to `--color-brand` and lifts to `--shadow-2`. Below 1080px the whole thing collapses to a plain 2-column grid, the hub becomes a full-width 250px block, and the connector lines are hidden. Build the grid first and layer the absolute positions on top.
-</Accordion>
+  <Accordion title="Floating track-record cards" icon="orbit">
+    Eight `<details>` cards positioned absolutely around a central portrait hub inside a 700px-tall relative box, connected by dashed SVG lines at `--color-border-strong`, `stroke-dasharray: 3 5`. Cards are 262px wide, `--radius`, 1px `--color-border`, `--shadow-1`. Summary row is `52px` minimum height: an orange mono year, then a 15px display-weight-650 title, then a 20px circular `+` that rotates 45° and fills orange on open. Open state swaps the border to `--color-brand` and lifts to `--shadow-2`. Below 1080px the whole thing collapses to a plain 2-column grid, the hub becomes a full-width 250px block, and the connector lines are hidden. Build the grid first and layer the absolute positions on top.
+  </Accordion>
 
-<Accordion title="Problem selector" icon="list-checks">
-A self-qualification checklist that reads symptoms and never asks for revenue or headcount. Seven `<button aria-pressed>` rows inside one rounded container, `--radius-lg`, 1px `--color-border-strong`, hairlines between rows. Each row is `56px` minimum, 16px copy at `--color-text-secondary`, with a 22px `6px`-radius box on the left. On press the row background goes `--color-accent-wash`, the text darkens to `--color-text-heading`, the box fills `--color-brand` with a `#7a2a00` border and the tick fades in. A live mono tally sits in the sticky left column. Real buttons with real pressed state, not checkboxes, because the tally has to be keyboard reachable.
-</Accordion>
+  <Accordion title="Problem selector" icon="list-checks">
+    A self-qualification checklist that reads symptoms and never asks for revenue or headcount. Seven `<button aria-pressed>` rows inside one rounded container, `--radius-lg`, 1px `--color-border-strong`, hairlines between rows. Each row is `56px` minimum, 16px copy at `--color-text-secondary`, with a 22px `6px`-radius box on the left. On press the row background goes `--color-accent-wash`, the text darkens to `--color-text-heading`, the box fills `--color-brand` with a `#7a2a00` border and the tick fades in. A live mono tally sits in the sticky left column. Real buttons with real pressed state, not checkboxes, because the tally has to be keyboard reachable.
+  </Accordion>
 
-<Accordion title="CTA" icon="mouse-pointer-click">
-Primary button: `linear-gradient(180deg, --color-accent-hi, --color-brand)` with a `#7a2a00` 1px border, `--radius-md`, `15px 26px` padding, `52px` minimum height, 16.5px label at weight 650, dark `#180600` text, an inset white highlight plus `--shadow-2`. Hover lifts 1px to `--shadow-3` and nudges the arrow 3px right. Ghost variant is white on `--color-border-strong`. Purple variant exists for secondary paths. The page also carries a sticky bottom action bar on `--color-night` at 96% with a 2px orange top border; below 760px its copy hides and the button goes full width, which is why the nav drops its own button at 720px. One action colour, one action shape, everywhere.
-</Accordion>
+  <Accordion title="CTA" icon="mouse-pointer-click">
+    Primary button: `linear-gradient(180deg, --color-accent-hi, --color-brand)` with a `#7a2a00` 1px border, `--radius-md`, `15px 26px` padding, `52px` minimum height, 16.5px label at weight 650, dark `#180600` text, an inset white highlight plus `--shadow-2`. Hover lifts 1px to `--shadow-3` and nudges the arrow 3px right. Ghost variant is white on `--color-border-strong`. Purple variant exists for secondary paths. The page also carries a sticky bottom action bar on `--color-night` at 96% with a 2px orange top border; below 760px its copy hides and the button goes full width, which is why the nav drops its own button at 720px. One action colour, one action shape, everywhere.
+  </Accordion>
 </AccordionGroup>
 
 **What holds them together.** Three devices, and they are the whole system. A 1px `--color-border` hairline opens and closes every band. An orange mono eyebrow labels every section. Elevation comes only from `--shadow-1`, `-2` and `-3`, and hover moves exactly one step up plus a 1–2px lift. Nothing else may signal depth.
@@ -694,20 +737,21 @@ Primary button: `linear-gradient(180deg, --color-accent-hi, --color-brand)` with
 
 ## Open
 
-<Warning icon="lock">
-Two items block this page from being final. Both are Xavier's.
-</Warning>
+<Check icon="circle-check">
+  **Both blockers closed on 7 October. Nothing on this page is waiting on Xavier any more.**
+</Check>
 
 <Steps>
-<Step title="Current site CSS and the confirmed font name" icon="type">
-The 23 July capture is a Lighthouse report, not a source dump. It gave us the colours, the class usage and the measured contrast ratios, and it proved there is no web font. It cannot give us anything Xavier has changed since, and it cannot name a display face that does not exist on the site. `--font-display` stays `[awaiting Xavier]` until Xavier sends the current HTML and says yes or no to Outfit. Everything typographic downstream waits on that, including whether the h1 clamp still holds.
-</Step>
+  <Step title="The font name — closed" icon="type">
+    No longer a question. The live stylesheet self-hosts **Outfit** for display and **Inter** for UI, as variable woff2 under the OFL, and his legal notice says so in writing. `--font-display` is set. The h1 clamp was written against Outfit and now resolves against it, so it holds.
 
-<Step title="One experience figure, applied everywhere" icon="clock">
-Four different year-counts are live across Xavier's properties right now, including 15+ on the page that takes the money. The wireframe deliberately leaves the figure out of the proof strip rather than pick one. Xavier chooses the number, then it goes everywhere without variation.
+    The 23 July Lighthouse capture that said otherwise described the July site. It has been overtaken.
+  </Step>
+  <Step title="The experience figure — closed" icon="clock">
+    **30 years** for Xavier personally, **+15 years** for XH Consulting. Each belongs to its entity and the two are never merged or swapped. The rule matters more than the numbers: a figure attached to the wrong entity is a false claim even when both figures are true.
 
-"50+ client projects" was the other half of this and closed on 21 September. It stands as published, confirmed as a conservative floor, and the `verify` chip comes off the wireframe.
-</Step>
+    The proof strip still carries three stats rather than four, matching the live site. The four-number set (30 years, 5 companies, 3 exits, 50+ projects) appears together only on experiencehacking.eu.
+  </Step>
 </Steps>
 
-Two smaller decisions, neither blocking: whether `brand.black #111827` and `brand.grey #374151` keep a job or get deleted, and whether the hover orange stays at the live `#ea580c` or moves to `#df4609`.
+**Three decisions remain, none of them blocking, all of them one pass by Xavier.** Whether `brand.black #111827` and `brand.grey #374151` keep a job or get deleted; whether the hover orange stays at the live `#ea580c` or moves to `#df4609`; and which neutral ramp wins, the July Tailwind slate scale in the token sheet above or the live site's own values. The third is the one with real consequences, and the live values are the safer default.

@@ -71,10 +71,24 @@
     "prompt": "Search the kit"
   },
   "banner": {
-    "content": "**Draft.** Nothing on this site is approved. Every page is under review with Xavier and is expected to change.",
+    "content": "**Draft, v2.** Xavier's 7 October corrections are applied. Pending his confirmation before anything here is treated as final.",
     "dismissible": false
   },
   "icons": {
     "library": "lucide"
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://xherman.com/en/"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Outfit",
+      "weight": 700
+    },
+    "body": {
+      "family": "Inter"
+    }
   }
 }
