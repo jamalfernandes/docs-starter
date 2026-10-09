@@ -10,7 +10,27 @@ noindex: true
 Copy the token block below into your repo as `tokens.css` and load it before anything else. Build every rule against the custom properties, never against raw values. Everything under the block is provenance: which file each number came from, how far we trust it, and what Xavier still has to confirm before a value is safe to ship.
 
 <Note icon="file-search">
-  Two sources feed this sheet. The **live xherman.com capture** (23 July 2026) is authoritative for `--font-*` and `--color-*`. The **approved 4 September wireframe** is authoritative for `--space-*`, `--scale-*`, radii, shadows and layout. Where they disagree, the provenance table says which one wins.
+  Three sources feed this sheet, in this order of authority.
+
+  1. **The live stylesheet, `xherman.com/assets/css/site.css?v=2.0`, read 7 October 2026.** Authoritative for `--font-*` and for the brand colours. This is the newest source and it overrides the other two wherever they disagree.
+  2. **The 23 July Lighthouse capture.** Still useful for measured contrast ratios and class-usage counts. **Its font finding is obsolete** — it reported no webfont, and the site now self-hosts two.
+  3. **The approved 4 September wireframe.** Authoritative for `--space-*`, `--scale-*`, radii, shadows and layout, none of which the live CSS contradicts.
+
+  Where they disagree, the provenance table says which one wins.
+</Note>
+
+<Note icon="link">
+  **The live stylesheet opens with a comment worth reading.** It names this kit as its own source, which means the two are not independent and should not be treated as cross-confirmation:
+
+  ```text
+  /* xherman.com — V2 stylesheet
+     Source design: Boost33 homepage mockup v2 (30 Sept 2026)
+     Tokens: Brand Kit /visual (orange #f95916 = action only,
+     purple #451d9e = emphasis/focus only, slate neutrals).
+     Fonts: Outfit (display) + Inter (UI), self-hosted, OFL. */
+  ```
+
+  His site was built from this page. When this page and his site agree on a colour, that is one decision recorded twice, not two sources agreeing.
 </Note>
 
 ---
@@ -201,8 +221,8 @@ Copy the token block below into your repo as `tokens.css` and load it before any
 | `--color-*` roles (surface, text, border) | Live site, resolved from Tailwind utility classes with occurrence counts | **High.** Class names are literal in the capture; the hex is Tailwind's documented output | None |
 | `--color-accent-ink`, `-night`, `-wash`, `-on-night` | Wireframe `:root`, verbatim. No live-site equivalent | **High for the value, medium for the mandate.** These exist because the wireframe added dark bands the live site does not have | Are the dark bands approved as final, or wireframe styling only? |
 | `--color-brand-hover` | Live site `hover:bg-orange-600` = `#ea580c` | **High** | The design-language extract recommends `#df4609` instead (hue-correct derivative, taken from xhacking.app). Live value kept here. Xavier picks. |
-| `--font-sans`, `--font-mono` | Live site. Proven by absence: no `@font-face`, no `<link>` to any font, no font file in the network log. The site renders Tailwind's defaults | **High, and it is a null result** | See Typography below |
-| `--font-display` | **Nothing.** Left as `[awaiting Xavier]` aliased to `--font-sans` | **None** | Blocked |
+| `--font-display`, `--font-body` | **Live site, `site.css?v=2.0`, read 7 Oct.** `"Outfit"` for display, `"Inter"` for UI, both self-hosted variable woff2, both preloaded. Confirmed again in his legal notice | **High. Recovered fact, not a recommendation** | None. Closed |
+| `--font-mono` | Live site. System stack, no webfont loaded. Carries every small uppercase label | **High** | None |
 | `--scale-*`, `--leading-*`, `--tracking-*`, `--weight-*` | Wireframe, copied rule by rule from the `<style>` block | **High** | The wireframe's clamps assume a display face that resolves. Re-check the h1 clamp once the real font lands. |
 | `--space-*` | Wireframe. Every value appears in the file; the **ladder is inferred** | **Medium.** The numbers are real, the naming and the ordering are ours | The wireframe has no spacing scale. It uses literal px. Adopt this ladder or keep literals? |
 | `--container`, `--pad`, `--section-y`, `--measure-*` | Wireframe `:root` and rules, verbatim | **High** | Live site container is 1152px, wireframe is 1160px. Trivial, but pick one. |
@@ -712,19 +732,21 @@ Three shadows, and nothing else is allowed to signal depth. Hover moves exactly 
 
 ## Open
 
-<Warning icon="lock">
-  Two items block this page from being final. Both are Xavier's.
-</Warning>
+<Check icon="circle-check">
+  **Both blockers closed on 7 October. Nothing on this page is waiting on Xavier any more.**
+</Check>
 
 <Steps>
-  <Step title="Current site CSS and the confirmed font name" icon="type">
-    The 23 July capture is a Lighthouse report, not a source dump. It gave us the colours, the class usage and the measured contrast ratios, and it proved there is no web font. It cannot give us anything Xavier has changed since, and it cannot name a display face that does not exist on the site. `--font-display` stays `[awaiting Xavier]` until Xavier sends the current HTML and says yes or no to Outfit. Everything typographic downstream waits on that, including whether the h1 clamp still holds.
-  </Step>
-  <Step title="One experience figure, applied everywhere" icon="clock">
-    Four different year-counts are live across Xavier's properties right now, including 15+ on the page that takes the money. The wireframe deliberately leaves the figure out of the proof strip rather than pick one. Xavier chooses the number, then it goes everywhere without variation.
+  <Step title="The font name — closed" icon="type">
+    No longer a question. The live stylesheet self-hosts **Outfit** for display and **Inter** for UI, as variable woff2 under the OFL, and his legal notice says so in writing. `--font-display` is set. The h1 clamp was written against Outfit and now resolves against it, so it holds.
 
-    "50+ client projects" was the other half of this and closed on 21 September. It stands as published, confirmed as a conservative floor, and the `verify` chip comes off the wireframe.
+    The 23 July Lighthouse capture that said otherwise described the July site. It has been overtaken.
+  </Step>
+  <Step title="The experience figure — closed" icon="clock">
+    **30 years** for Xavier personally, **+15 years** for XH Consulting. Each belongs to its entity and the two are never merged or swapped. The rule matters more than the numbers: a figure attached to the wrong entity is a false claim even when both figures are true.
+
+    The proof strip still carries three stats rather than four, matching the live site. The four-number set (30 years, 5 companies, 3 exits, 50+ projects) appears together only on experiencehacking.eu.
   </Step>
 </Steps>
 
-Two smaller decisions, neither blocking: whether `brand.black #111827` and `brand.grey #374151` keep a job or get deleted, and whether the hover orange stays at the live `#ea580c` or moves to `#df4609`.
+**Three decisions remain, none of them blocking, all of them one pass by Xavier.** Whether `brand.black #111827` and `brand.grey #374151` keep a job or get deleted; whether the hover orange stays at the live `#ea580c` or moves to `#df4609`; and which neutral ramp wins, the July Tailwind slate scale in the token sheet above or the live site's own values. The third is the one with real consequences, and the live values are the safer default.
