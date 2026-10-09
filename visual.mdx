@@ -40,9 +40,14 @@ Copy the token block below into your repo as `tokens.css` and load it before any
 ```css
 /* ============================================================
    xherman.com, design tokens
-   Boost33 · sources: xherman.com capture 2026-07-23,
-   xherman-homepage-design.html 2026-09-04
-   Values marked INFERRED are not literal in either source.
+   Boost33 · sources, newest first:
+     site.css?v=2.0            read 2026-10-07  (fonts, brand colours)
+     xherman.com capture       2026-07-23       (contrast, class usage)
+     xherman-homepage-design.html 2026-09-04    (scale, space, radii)
+   Values marked INFERRED are not literal in any source.
+   KNOWN GAP: the neutral ramp below is the July Tailwind slate scale.
+   The live site has since moved to its own values. Reconcile before
+   the build — see the Typography section.
    ============================================================ */
 :root {
 
@@ -223,7 +228,7 @@ Copy the token block below into your repo as `tokens.css` and load it before any
 | `--color-brand-hover` | Live site `hover:bg-orange-600` = `#ea580c` | **High** | The design-language extract recommends `#df4609` instead (hue-correct derivative, taken from xhacking.app). Live value kept here. Xavier picks. |
 | `--font-display`, `--font-body` | **Live site, `site.css?v=2.0`, read 7 Oct.** `"Outfit"` for display, `"Inter"` for UI, both self-hosted variable woff2, both preloaded. Confirmed again in his legal notice | **High. Recovered fact, not a recommendation** | None. Closed |
 | `--font-mono` | Live site. System stack, no webfont loaded. Carries every small uppercase label | **High** | None |
-| `--scale-*`, `--leading-*`, `--tracking-*`, `--weight-*` | Wireframe, copied rule by rule from the `<style>` block | **High** | The wireframe's clamps assume a display face that resolves. Re-check the h1 clamp once the real font lands. |
+| `--scale-*`, `--leading-*`, `--tracking-*`, `--weight-*` | Wireframe, copied rule by rule from the `<style>` block | **High** | None. The clamps assumed a display face that resolves, and Outfit now does. Checked 7 Oct. |
 | `--space-*` | Wireframe. Every value appears in the file; the **ladder is inferred** | **Medium.** The numbers are real, the naming and the ordering are ours | The wireframe has no spacing scale. It uses literal px. Adopt this ladder or keep literals? |
 | `--container`, `--pad`, `--section-y`, `--measure-*` | Wireframe `:root` and rules, verbatim | **High** | Live site container is 1152px, wireframe is 1160px. Trivial, but pick one. |
 | `--radius-*` | Wireframe. `--r` and `--r-lg` verbatim; the xs/sm/md steps are named by us from observed `5px` / `9px` / `11px` | **High value, inferred naming** | None |
@@ -350,7 +355,7 @@ Copy the token block below into your repo as `tokens.css` and load it before any
 **Weight 650 is real and it needs the variable file.** The live site uses it on the primary button, on card titles and on several `strong` elements. With a static 600/700 pair it snaps to one or the other and the whole system reads subtly wrong. Ship the variable files, not static cuts.
 
 <Warning icon="triangle-alert">
-  **One thing on this page is now out of date and has not been rewritten.** The neutral ramp below is the Tailwind slate scale captured in July. The live stylesheet has since moved to its own values: `--ink #0b1220` for headings, `--ink-2 #2c384f` for body, `--ink-3 #475569`, `--ink-4 #556378`, `--line #e6eaf0`.
+  **One thing on this page is now out of date and has not been rewritten.** The neutral ramp in the token sheet above is the Tailwind slate scale captured in July. The live stylesheet has since moved to its own values: `--ink #0b1220` for headings, `--ink-2 #2c384f` for body, `--ink-3 #475569`, `--ink-4 #556378`, `--line #e6eaf0`.
 
   They are close to the slate ramp but not identical. Reconciling them is a bigger change than Xavier's 7 October list asked for, and his instruction was explicitly to change nothing beyond it, so it has been left alone and flagged instead. **Before the build, pick one ramp.** The live site's own values are the safer choice, because that is what is already rendering.
 </Warning>
