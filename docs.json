@@ -70,10 +70,6 @@
   "search": {
     "prompt": "Search the kit"
   },
-  "banner": {
-    "content": "**Draft, v2.** Xavier's 7 October corrections are applied. Pending his confirmation before anything here is treated as final.",
-    "dismissible": false
-  },
   "icons": {
     "library": "lucide"
   },
